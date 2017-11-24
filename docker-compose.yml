@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  hello:
+    image: dockercloud/hello-world
+  warp:
+    build: .
+    entrypoint: /cloudflare-warp --hostname ggt.example.com http://hello
+    volumes:
+      - ./certs/:/root/.cloudflare-warp
+  warp_backup:
+    build: .
+    entrypoint: /cloudflare-warp --hostname ggt.example.com http://hello
+    volumes:
+      - ./certs/:/root/.cloudflare-warp

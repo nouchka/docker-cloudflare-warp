@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  warp_login:
+    build: .
+    image: nouchka/cloudflare-warp
+    entrypoint: bash -c "/cloudflare-warp login && cp /root/.cloudflare-warp/cert.pem /tmp/certs/"
+    volumes:
+      - ./certs/:/tmp/certs/
