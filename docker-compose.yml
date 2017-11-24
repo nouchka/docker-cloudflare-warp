@@ -5,11 +5,13 @@ services:
     image: dockercloud/hello-world
   warp:
     build: .
-    entrypoint: /cloudflare-warp --hostname ggt.example.com http://hello
+    environment:
+      - DOMAIN=${DOMAIN}
     volumes:
       - ./certs/:/root/.cloudflare-warp
   warp_backup:
     build: .
-    entrypoint: /cloudflare-warp --hostname ggt.example.com http://hello
+    environment:
+      - DOMAIN=${DOMAIN}
     volumes:
       - ./certs/:/root/.cloudflare-warp
